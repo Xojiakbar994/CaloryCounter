@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><label for="weight">Weight</label></td>
+            <td><input type="number" min="0" name="weight"></td>
+            <td><label for="height">Height</label></td>
+            <td><input type="number" min="0" name="height"></td>
+            <td><label for="age">Age</label></td>
+            <td><input type="number" min="0" name="age"></td>
+        </tr>
+        <tr>
+            <td><label for="gender">Gender</label></td>
+            <td>
+                <select name="gender">
+                    <option value="5">Male</option>
+                    <option value="-161">Female</option>
+                </select>
+            </td>
+            <td><label for="level">Activity level</label></td>
+            <td>
+                <select name="level">
+                    <option value="1.2">Sedentery</option>
+                    <option value="1.375">Lightly active</option>
+                    <option value="1.55">Moderately active</option>
+                    <option value="1.725">Very active</option>
+                    <option value="1.9">Extra active</option>
+                </select>
+            </td>
+            <td colspan="2">
+                <button onclick="Calc()">Calculate</button>
+            </td>
+        </tr>
+    </table>
+<script>
+    function Calc() {
+        var weight = 10 * parseInt(document.getElementsByName('weight')[0].value);
+        var height = 6.25 * parseInt(document.getElementsByName('height')[0].value);
+        var age = -5 * parseInt(document.getElementsByName('age')[0].value);
+        var gender = parseInt(document.getElementsByName('gender')[0].value);
+        var res = parseFloat(document.getElementsByName("level")[0].value) * (weight+height+age+gender);
+        alert(res);
+    }
+</script>
+</body>
+</html>
