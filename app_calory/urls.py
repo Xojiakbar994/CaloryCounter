@@ -1,12 +1,6 @@
 from django.urls import path
 
-from .views import (
-    ProductCreateView,
-    APIFoodsListView,
-    APIFoodsUpdateList,
-    APIFoodsCreateAPIView,
-    APIFoodsDeleteAPIView,
-)
+from .views import *
 
 urlpatterns = [
     path("new/", ProductCreateView.as_view(), name="new_food"),
