@@ -31,7 +31,7 @@ class APIFoodsListView(ListAPIView):
 
 
 class APIFoodsUpdateList(UpdateAPIView):
-    queryset = Products.objects.all
+    queryset = Products.objects.all()
     serializer_class = ProductsSerializer
 
 

@@ -1,51 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <table>
-        <tr>
-            <td><label for="weight">Weight</label></td>
-            <td><input type="number" min="0" name="weight"></td>
-            <td><label for="height">Height</label></td>
-            <td><input type="number" min="0" name="height"></td>
-            <td><label for="age">Age</label></td>
-            <td><input type="number" min="0" name="age"></td>
-        </tr>
-        <tr>
-            <td><label for="gender">Gender</label></td>
-            <td>
-                <select name="gender">
-                    <option value="5">Male</option>
-                    <option value="-161">Female</option>
-                </select>
-            </td>
-            <td><label for="level">Activity level</label></td>
-            <td>
-                <select name="level">
-                    <option value="1.2">Sedentery</option>
-                    <option value="1.375">Lightly active</option>
-                    <option value="1.55">Moderately active</option>
-                    <option value="1.725">Very active</option>
-                    <option value="1.9">Extra active</option>
-                </select>
-            </td>
-            <td colspan="2">
-                <button onclick="Calc()">Calculate</button>
-            </td>
-        </tr>
-    </table>
-<script>
+<!-- @format -->
+
+{% extends 'base.html' %} 
+{% block title %} 
+  Calculate daily required calories 
+{% endblock %} 
+
+{% block content %}
+  <table class="m5 table">
+    <tr>
+      <td><label for="weight">Weight</label></td>
+      <td><input type="number" min="0" name="weight" /></td>
+      <td><label for="height">Height</label></td>
+      <td><input type="number" min="0" name="height" /></td>
+      <td><label for="age">Age</label></td>
+      <td><input type="number" min="0" name="age" /></td>
+    </tr>
+    <tr>
+      <td><label for="gender">Gender</label></td>
+      <td>
+        <select name="gender">
+          <option value="5">Male</option>
+          <option value="-161">Female</option>
+        </select>
+      </td>
+      <td><label for="level">Activity level</label></td>
+      <td>
+        <select name="level">
+          <option value="1.2">Sedentery</option>
+          <option value="1.375">Lightly active</option>
+          <option value="1.55">Moderately active</option>
+          <option value="1.725">Very active</option>
+          <option value="1.9">Extra active</option>
+        </select>
+      </td>
+      <td colspan="2">
+        <button onclick="Calc()">Calculate</button>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <br />
+  <h3 id="result" style="visibility: hidden">
+    Your daily required calories
+    <span id="my_calory" style="font-weight: bold"></span>
+  </h3>
+
+  <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="1600" class="mr-tooltip aos-init aos-animate"><h4 class="mr-tooltip">Calories</h4><p class="mr-tooltip">The Basal Metabolic Rate (BMR)=</p><p class="mr-tooltip">10 * weight (kg) + 6.25 * height(cm) - 5 * age(y) + 5 for (man)</p><p class="mr-tooltip">10 * weight(kg) + 6.25 * height(cm) - 5 * age(y) - 161 for ​(woman)</p><p class="mr-tooltip">To determin​e your total daily calorie needs, multiply your BMR by the appropriate activity factor, as follows:</p></div>
+  <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="1700" class="mr-tooltip aos-init aos-animate"><ul class="list-style mr-tooltip"><li class="mr-tooltip">If you are sedentary (little or no exercise) : Calorie-Calculation = BMR x 1.2</li><li class="mr-tooltip">If you are lightly active (light exercise/sports 1-3 days​/week) : Calorie-Calculation = BMR x 1.375</li><li class="mr-tooltip">If you are moderately active (moderate exercise/sports 3-5 days/week) : Calorie-Calculation = BMR x 1.55</li><li class="mr-tooltip">If you are very active (hard exercise/sports 6-7 days a week) : Calorie-Calculation = BMR x 1.725</li><li class="mr-tooltip">If you are extra active (very hard exercise/sports &amp; physical job or 2x training) : Calorie-Calculation = BMR x 1.9</li></ul><p class="mr-tooltip">For example If you are sedentary, and your BMR equal 1745 so the total number of calories you need in order to maintain your current weight = 1745*1.2 = 2094.</p></div>
+  
+  <script>
     function Calc() {
-        var weight = 10 * parseInt(document.getElementsByName('weight')[0].value);
-        var height = 6.25 * parseInt(document.getElementsByName('height')[0].value);
-        var age = -5 * parseInt(document.getElementsByName('age')[0].value);
-        var gender = parseInt(document.getElementsByName('gender')[0].value);
-        var res = parseFloat(document.getElementsByName("level")[0].value) * (weight+height+age+gender);
-        alert(res);
+      var weight = 10 * parseInt(document.getElementsByName("weight")[0].value);
+      var height = 6.25 * parseInt(document.getElementsByName("height")[0].value);
+      var age = -5 * parseInt(document.getElementsByName("age")[0].value);
+      var gender = parseInt(document.getElementsByName("gender")[0].value);
+      var res = parseFloat(document.getElementsByName("level")[0].value) * (weight + height + age + gender);
+      document.getElementById("my_calory").innerText = res;
+      document.getElementById("result").style.visibility = "visible";
     }
-</script>
-</body>
-</html>
+  </script>
+
+{% endblock %}
